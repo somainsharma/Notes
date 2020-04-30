@@ -10,9 +10,16 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.EditText;
+import android.widget.Toast;
 import android.widget.Toolbar;
 
+import com.parse.ParseException;
+import com.parse.ParseUser;
+import com.parse.SaveCallback;
+
 public class add_note extends AppCompatActivity {
+
+    final ParseUser appuser = ParseUser.getCurrentUser();
 
     EditText edttitle, edtcontext;
     Toolbar toolbar;
@@ -25,8 +32,8 @@ public class add_note extends AppCompatActivity {
         edttitle = findViewById(R.id.edtnoteTitle);
         edtcontext = findViewById(R.id.edtnotecontent);
 
-       // toolbar = findViewById(R.id.tbpr);
-        //setSupportActionBar(toolbar);
+
+
 
 
         edttitle.addTextChangedListener(new TextWatcher() {
@@ -64,7 +71,26 @@ public class add_note extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
-       if(item.getItemId() == R.id.itemadd){
+       if(item.getItemId() == R.id.itmsave){
+
+        appuser.put("Title",edttitle.getText().toString());
+        appuser.put("Context",edtcontext.getText().toString());
+
+        appuser.saveInBackground(new SaveCallback() {
+            @Override
+            public void done(ParseException e) {
+                if(e == null){
+
+                    Toast.makeText(add_note.this, "Saved", Toast.LENGTH_SHORT).show();
+
+                }else{
+
+                    Toast.makeText(add_note.this, "An error occurred" + "\n" + e.getMessage(),
+                            Toast.LENGTH_SHORT).show();
+
+                }
+            }
+        });
 
        }else if(item.getItemId() == R.id.itmdelete){
 

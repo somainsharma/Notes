@@ -34,4 +34,11 @@ dependencies {
     implementation 'com.github.medyo:fancybuttons:1.9.1'
     implementation "com.android.support:appcompat-v7:25"
     implementation 'androidx.recyclerview:recyclerview:1.0.0'
+    implementation 'androidx.cardview:cardview:1.0.0'
+    implementation "com.github.parse-community.Parse-SDK-Android:parse:1.24.1"
+}
+repositories {
+    mavenCentral()
+    jcenter()
+    maven { url 'https://jitpack.io' }
 }

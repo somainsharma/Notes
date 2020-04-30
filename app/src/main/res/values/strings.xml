@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Notes</string>
+    <string name="back4app_server_url">https://parseapi.back4app.com/</string>
+
+    <!-- Change the following strings as required -->
+    <string name="back4app_app_id">0B5J6OE3Dq8xe8fy6XJk390tuiwlif14Qp9aJowo</string>
+    <string name="back4app_client_key">1zZET70xMjYa0SwoHboLkP1W1DqdVrE6VFhOW9yz</string>
 </resources>
