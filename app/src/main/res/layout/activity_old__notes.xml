@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".add_note">
+    tools:context=".Old_Notes">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/tbpr"
+        android:id="@+id/toolbaroldnotes"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:outlineAmbientShadowColor="@color/colorPrimary"
@@ -16,9 +16,10 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/edtnotecontent"
-        android:layout_width="379dp"
-        android:layout_height="593dp"
+        android:id="@+id/edtContON"
+        android:layout_width="374dp"
+        android:layout_height="553dp"
+        android:layout_margin="25dp"
         android:layout_marginStart="96dp"
         android:layout_marginEnd="102dp"
         android:layout_marginBottom="16dp"
@@ -29,22 +30,23 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.481"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edtTitleON" />
 
     <EditText
-        android:id="@+id/edtnoteTitle"
+        android:id="@+id/edtTitleON"
         android:layout_width="368dp"
         android:layout_height="44dp"
-        android:layout_marginStart="19dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="10dp"
+        android:layout_margin="25dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="22dp"
+        android:layout_marginEnd="27dp"
         android:ems="10"
         android:hint="Title...."
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/edtnotecontent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tbpr" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbaroldnotes" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

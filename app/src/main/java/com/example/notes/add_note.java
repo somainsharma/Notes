@@ -13,16 +13,25 @@ import android.widget.EditText;
 import android.widget.Toast;
 import android.widget.Toolbar;
 
+import com.parse.FindCallback;
+import com.parse.GetCallback;
 import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
+
+import java.util.List;
 
 public class add_note extends AppCompatActivity {
 
     final ParseUser appuser = ParseUser.getCurrentUser();
+    String currentuser;
+
 
     EditText edttitle, edtcontext;
     Toolbar toolbar;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,10 +40,7 @@ public class add_note extends AppCompatActivity {
 
         edttitle = findViewById(R.id.edtnoteTitle);
         edtcontext = findViewById(R.id.edtnotecontent);
-
-
-
-
+        currentuser = getIntent().getStringExtra("CurrentUser");
 
         edttitle.addTextChangedListener(new TextWatcher() {
             @Override
@@ -71,31 +77,40 @@ public class add_note extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
-       if(item.getItemId() == R.id.itmsave){
+        switch (item.getItemId()){
+            case R.id.itmsave:
 
-        appuser.put("Title",edttitle.getText().toString());
-        appuser.put("Context",edtcontext.getText().toString());
+                 ParseObject note = new ParseObject("note");
+                note.put("Title",edttitle.getText().toString());
+                note.put("Context", edtcontext.getText().toString());
+                note.put("ownerusername", ParseUser.getCurrentUser().getUsername());
 
-        appuser.saveInBackground(new SaveCallback() {
-            @Override
-            public void done(ParseException e) {
-                if(e == null){
+                note.saveInBackground(new SaveCallback() {
+                    @Override
+                    public void done(ParseException e) {
 
-                    Toast.makeText(add_note.this, "Saved", Toast.LENGTH_SHORT).show();
+                        if(e == null){
+                            Toast.makeText(add_note.this,"Saved successfully",Toast.LENGTH_SHORT).show();
 
-                }else{
+                        }else
+                        {
+                            Toast.makeText(add_note.this,"An error occured \n" + e.getMessage(),Toast.LENGTH_SHORT).show();
 
-                    Toast.makeText(add_note.this, "An error occurred" + "\n" + e.getMessage(),
-                            Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
 
-                }
-            }
-        });
+                break;
 
-       }else if(item.getItemId() == R.id.itmdelete){
+            case R.id.itmdelete:
+                break;
 
-       }
-
+        }
         return super.onOptionsItemSelected(item);
     }
-}
+
+
+
+
+
+    }
